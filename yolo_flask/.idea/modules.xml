@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/yolo_flask.iml" filepath="$PROJECT_DIR$/.idea/yolo_flask.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/yolo_flas.iml" filepath="$PROJECT_DIR$/.idea/yolo_flas.iml" />
     </modules>
   </component>
 </project>
