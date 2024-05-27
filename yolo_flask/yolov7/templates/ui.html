@@ -21,7 +21,7 @@
         }
         header.feature-box.second{
         background-color:blue;
-        height:50px;
+        height:60px;
         text-align:center;
         margin-top:-25px;
         }
@@ -32,6 +32,27 @@
           border-radius: 35px;
           object-fit: contain;
           margin:20px;
+        }
+        header.feature-box.right{
+        background-color:black;
+        color:white;
+        height:120px;
+        padding:5px;
+        text-align:right;
+        }
+        ul{
+        list-style:none;
+        padding:0px;}
+        li{
+        display:inline-block;
+        background-color:gray;
+        border-radius:10px;
+        padding:10px;
+        margin:10px;
+        }
+        li:hover{
+        background-color:red;
+        margin:10px;
         }
         section.col-sm{
           background-color:black;
@@ -58,15 +79,15 @@
         }
         .results{
         background-color:black;
-        padding:5px;
         text-align:center;
         font-size:20px;
+        height:50px;
+        margin-top:-25px;
         }
         section.results1 div{
         background:blue;
         border-radius: 15px;
         padding:20px;
-        display:inline-block;
         margin:100px;
         margin-right:150px;
         text-align:center;
@@ -79,6 +100,16 @@
         background-color:green;
         margin:0px;
         margin-top:-10px;
+        }
+        div.col-left{
+        width: 70%;
+        float:left
+        }
+        div.col-right{
+        width:30%;
+        float:right;
+        background-color: skyblue
+
         }
 .btnCustom
 {
@@ -94,77 +125,91 @@
     </style>
 </head>
 <body>
-<header class="feature-box top">
-    <h1><strong>Object Detection using YOLOv7</strong></h1>
+
+<header class="feature-box right">
+        <nav>
+            <ul>
+            <li><a href="/home">Home</a></li>
+            <li><a href="/FrontPage">Video</a></li>
+            <li><a href="/webcam">LiveWebcam</a></li>
+            </ul>
+        </nav>
 </header>
-<header class="feature-box second">
-     <h1><strong>Output Video</strong></h1>
-</header>
 
-  <section class="col-sm " >
-          <img src="{{ url_for('webapp') }}"   alt="Upload video">
+<div id="container">
+        <div class="col-left">
+    <header class="feature-box second">
+         <h1><strong>Output Video</strong></h1>
+    </header>
 
-  </section>
-<section class="results">
-    <h1>Output Results</h1>
-</section>
+      <section class="col-sm " >
+              <img src="{{ url_for('webapp') }}"   alt="Upload video">
 
-  <script type="text/javascript"
-  src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+      </section>
 
-<script type="text/javascript">
-  var $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
-</script>
-<script type="text/javascript">
-    var intervalID = setInterval(update_values,1000);
+        </div>
+    <div class="col-right">
+        <section class="results">
+            <h1>Output Results</h1>
+        </section>
 
-      function update_values() {
-            $.getJSON($SCRIPT_ROOT + '/sizegenerateweb',
+          <script type="text/javascript"
+          src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
 
-          function(data) {
-            $('#imageSize').text(data.imageSize);
-            console.log(data)
-          });
+        <script type="text/javascript">
+          var $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+        </script>
+        <script type="text/javascript">
+            var intervalID = setInterval(update_values,1000);
 
-        };
+              function update_values() {
+                    $.getJSON($SCRIPT_ROOT + '/sizegenerateweb',
 
+                  function(data) {
+                    $('#imageSize').text(data.imageSize);
+                    console.log(data)
+                  });
 
-
-        function stopTextColor() {
-          clearInterval(intervalID);
-        }
-       </script>
-<script type="text/javascript">
-    var intervalID = setInterval(update_values,1000);
-
-      function update_values() {
-            $.getJSON($SCRIPT_ROOT + '/detectionCountweb',
-
-          function(data) {
-            $('#detectCount').text(data.detectCount);
-            console.log(data)
-          });
-
-        };
+                };
 
 
 
-        function stopTextColor() {
-          clearInterval(intervalID);
-        }
+                function stopTextColor() {
+                  clearInterval(intervalID);
+                }
+               </script>
+        <script type="text/javascript">
+            var intervalID = setInterval(update_values,1000);
 
-</script>
-<section class="results1">
-    <div> Total Objects Detected <br><span id="detectCount" >?</span></div>
-    <script>
-        document.getElementById("detectCount").innerHTML;
-    </script>
-    <div>Resolution <br><span id="imageSize" >?</span></div>
-        <script>
-        document.getElementById("imageSize").innerHTML;
-    </script>
-</section>
+              function update_values() {
+                    $.getJSON($SCRIPT_ROOT + '/detectionCountweb',
 
+                  function(data) {
+                    $('#detectCount').text(data.detectCount);
+                    console.log(data)
+                  });
+
+                };
+
+
+
+                function stopTextColor() {
+                  clearInterval(intervalID);
+                }
+
+        </script>
+        <section class="results1">
+            <div> Total Objects Detected <br><span id="detectCount" >?</span></div>
+            <script>
+                document.getElementById("detectCount").innerHTML;
+            </script>
+            <div>Resolution <br><span id="imageSize" >?</span></div>
+                <script>
+                document.getElementById("imageSize").innerHTML;
+            </script>
+        </section>
+    </div>
+</div>
 <!--
 <section class="result2">
         <div >
